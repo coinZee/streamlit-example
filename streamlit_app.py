@@ -30,6 +30,14 @@ df = pd.DataFrame({
     "rand": np.random.randn(num_points),
 })
 
+hide_watermark = """
+        <style>
+        div[data-testid="stWatermark"] {
+          visibility: hidden; 
+        }
+        </style>
+"""
+
 st.altair_chart(alt.Chart(df, height=700, width=700)
     .mark_point(filled=True)
     .encode(
@@ -38,3 +46,4 @@ st.altair_chart(alt.Chart(df, height=700, width=700)
         color=alt.Color("idx", legend=None, scale=alt.Scale()),
         size=alt.Size("rand", legend=None, scale=alt.Scale(range=[1, 150])),
     ))
+st.markdown(hide_watermark, unsafe_allow_html=True)
